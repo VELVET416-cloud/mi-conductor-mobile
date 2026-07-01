@@ -4,15 +4,21 @@ import '../cliente/guest_home_screen.dart';
 import '../conductor/home_conductor_screen.dart';
 
 // ===========================================================
-// PALETA DE COLORES (idéntica a la original)
+// PALETA DE COLORES - VERSIÓN LIGHT
+// Extraída del Design System (Primary / Secondary / Tertiary / Neutral)
 // ===========================================================
 class _Colors {
-  static const Color background = Color(0xFF021B2C);
-  static const Color backgroundAlt = Color(0xFF022B40);
-  static const Color surface = Color(0xFF0A314A);
-  static const Color field = Color(0xFF06263A);
-  static const Color accent = Color(0xFFFFA43A);
-  static const Color divider = Color(0x14FFFFFF);
+  static const Color background = Color(0xFFEAF3FC); // fondo general claro
+  static const Color backgroundAlt = Color(0xFFD8E9F8); // variante fondo
+  static const Color surface = Color(0xFFFFFFFF); // tarjetas
+  static const Color field = Color(0xFFE0F0FF); // inputs / chips
+  static const Color accent = Color(0xFF8E4E00); // Primary (naranja/marrón)
+  static const Color accentSoft = Color(0xFFF2A65A); // Primary claro (gradiente)
+  static const Color secondary = Color(0xFF1B768E); // Secondary (teal)
+  static const Color tertiary = Color(0xFF655C5D); // Tertiary (malva/gris)
+  static const Color textDark = Color(0xFF012538); // Neutral (texto principal)
+  static const Color textMuted = Color(0xFF4A6273); // Neutral suavizado
+  static const Color divider = Color(0x1F012538);
 }
 
 class LoginScreen extends StatefulWidget {
@@ -90,8 +96,8 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: _Colors.background,
       body: Stack(
         children: [
-          // -------- Fondo: mapa oscuro estilizado (mismo estilo de la app) --------
-          const Positioned.fill(child: _DarkMapBackground()),
+          // -------- Fondo: mapa claro estilizado (mismo estilo de la app) --------
+          const Positioned.fill(child: _LightMapBackground()),
           Positioned.fill(
             child: DecoratedBox(
               decoration: BoxDecoration(
@@ -99,8 +105,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    _Colors.background.withOpacity(0.55),
-                    _Colors.background.withOpacity(0.97),
+                    _Colors.background.withOpacity(0.35),
+                    _Colors.background.withOpacity(0.96),
                   ],
                 ),
               ),
@@ -123,10 +129,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 64,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: _Colors.accent.withOpacity(0.14),
+                      color: _Colors.accent.withOpacity(0.12),
                       borderRadius: BorderRadius.circular(18),
                       border: Border.all(
-                        color: _Colors.accent.withOpacity(0.35),
+                        color: _Colors.accent.withOpacity(0.30),
                       ),
                     ),
                     child: const Icon(
@@ -153,7 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const Text(
                     "Soluciones de conducción premium",
                     style: TextStyle(
-                      color: Colors.white70,
+                      color: _Colors.textMuted,
                       fontSize: 13.5,
                     ),
                   ),
@@ -165,12 +171,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: double.infinity,
                     padding: const EdgeInsets.all(26),
                     decoration: BoxDecoration(
-                      color: _Colors.surface.withOpacity(0.92),
+                      color: _Colors.surface.withOpacity(0.96),
                       borderRadius: BorderRadius.circular(28),
                       border: Border.all(color: _Colors.divider),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.4),
+                          color: _Colors.textDark.withOpacity(0.10),
                           blurRadius: 28,
                           offset: const Offset(0, 14),
                         ),
@@ -182,7 +188,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           "Bienvenido de nuevo",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: Colors.white,
+                            color: _Colors.textDark,
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
                           ),
@@ -194,7 +200,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           "Ingresa tus credenciales para acceder",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: Colors.white60,
+                            color: _Colors.textMuted,
                             fontSize: 13,
                           ),
                         ),
@@ -239,7 +245,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         TextField(
                           controller: correoController,
                           keyboardType: TextInputType.emailAddress,
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: _Colors.textDark),
                           decoration: _fieldDecoration(
                             hint: "correo@ejemplo.com",
                             icon: Icons.email_outlined,
@@ -253,7 +259,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         TextField(
                           controller: passwordController,
                           obscureText: _ocultarPassword,
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: _Colors.textDark),
                           decoration: _fieldDecoration(
                             hint: "********",
                             icon: Icons.lock_outline,
@@ -263,7 +269,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 _ocultarPassword
                                     ? Icons.visibility_outlined
                                     : Icons.visibility_off_outlined,
-                                color: Colors.white70,
+                                color: _Colors.textMuted,
                               ),
                               onPressed: () => setState(
                                 () => _ocultarPassword = !_ocultarPassword,
@@ -287,7 +293,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: const Text(
                               "¿Olvidaste tu contraseña?",
                               style: TextStyle(
-                                color: Colors.white70,
+                                color: _Colors.textMuted,
                                 fontSize: 12.5,
                               ),
                             ),
@@ -311,7 +317,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: const Text(
                               "Iniciar sesión",
                               style: TextStyle(
-                                color: Colors.black87,
+                                color: Colors.white,
                                 fontSize: 17,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -337,7 +343,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: const Text(
                               "Invitado",
                               style: TextStyle(
-                                color: Colors.white70,
+                                color: _Colors.textMuted,
                                 fontSize: 13.5,
                               ),
                             ),
@@ -360,7 +366,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 : "Demo Conductor · conductor@mi.com · 123456",
                             textAlign: TextAlign.center,
                             style: const TextStyle(
-                              color: Colors.white54,
+                              color: _Colors.textMuted,
                               fontSize: 11.5,
                             ),
                           ),
@@ -378,7 +384,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Text(
                                 "O CONTINÚA CON",
                                 style: TextStyle(
-                                  color: Colors.white54,
+                                  color: _Colors.textMuted,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 11,
                                   letterSpacing: 0.4,
@@ -421,7 +427,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   RichText(
                     text: const TextSpan(
                       text: "¿Aún no eres cliente? ",
-                      style: TextStyle(color: Colors.white70, fontSize: 13.5),
+                      style:
+                          TextStyle(color: _Colors.textMuted, fontSize: 13.5),
                       children: [
                         TextSpan(
                           text: "Regístrate ahora",
@@ -450,7 +457,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Text(
         text,
         style: const TextStyle(
-          color: Colors.white60,
+          color: _Colors.textMuted,
           fontWeight: FontWeight.bold,
           fontSize: 11.5,
           letterSpacing: 0.4,
@@ -465,10 +472,10 @@ class _LoginScreenState extends State<LoginScreen> {
     Widget? suffix,
   }) {
     return InputDecoration(
-      prefixIcon: Icon(icon, color: Colors.white70, size: 20),
+      prefixIcon: Icon(icon, color: _Colors.textMuted, size: 20),
       suffixIcon: suffix,
       hintText: hint,
-      hintStyle: const TextStyle(color: Colors.white38),
+      hintStyle: const TextStyle(color: Color(0xFF9BB0BF)),
       filled: true,
       fillColor: _Colors.field,
       contentPadding:
@@ -522,13 +529,13 @@ class _RoleTab extends StatelessWidget {
             Icon(
               icon,
               size: 17,
-              color: selected ? Colors.black87 : Colors.white70,
+              color: selected ? Colors.white : _Colors.textMuted,
             ),
             const SizedBox(width: 6),
             Text(
               label,
               style: TextStyle(
-                color: selected ? Colors.black87 : Colors.white70,
+                color: selected ? Colors.white : _Colors.textMuted,
                 fontWeight: FontWeight.w700,
                 fontSize: 13.5,
               ),
@@ -571,12 +578,12 @@ class _SocialButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(icon, color: Colors.white70, size: 20),
+              Icon(icon, color: _Colors.textMuted, size: 20),
               const SizedBox(width: 6),
               Text(
                 label,
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: _Colors.textDark,
                   fontSize: 13.5,
                   fontWeight: FontWeight.w600,
                 ),
@@ -590,26 +597,27 @@ class _SocialButton extends StatelessWidget {
 }
 
 // ===========================================================
-// Fondo de "mapa oscuro" dibujado por código (mismo estilo
+// Fondo de "mapa claro" dibujado por código (mismo estilo
 // que el resto de la aplicación): cuadrícula sutil, vías
-// principales curvas y puntos de interés con resplandor.
+// principales curvas y puntos de interés con resplandor,
+// adaptado a la paleta light del Design System.
 // ===========================================================
-class _DarkMapBackground extends StatelessWidget {
-  const _DarkMapBackground();
+class _LightMapBackground extends StatelessWidget {
+  const _LightMapBackground();
 
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: const BoxDecoration(color: _Colors.background),
       child: CustomPaint(
-        painter: _DarkMapPainter(),
+        painter: _LightMapPainter(),
         size: Size.infinite,
       ),
     );
   }
 }
 
-class _DarkMapPainter extends CustomPainter {
+class _LightMapPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final bgGradient = Paint()
@@ -622,7 +630,7 @@ class _DarkMapPainter extends CustomPainter {
 
     // -------- Cuadrícula sutil tipo mapa --------
     final gridPaint = Paint()
-      ..color = Colors.white.withOpacity(0.035)
+      ..color = _Colors.textDark.withOpacity(0.045)
       ..strokeWidth = 1;
     const spacing = 38.0;
     for (double x = 0; x < size.width; x += spacing) {
@@ -634,13 +642,13 @@ class _DarkMapPainter extends CustomPainter {
 
     // -------- Vías principales (curvas tipo avenidas) --------
     final roadPaint = Paint()
-      ..color = Colors.white.withOpacity(0.10)
+      ..color = _Colors.tertiary.withOpacity(0.16)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 3
       ..strokeCap = StrokeCap.round;
 
     final roadPaintAccent = Paint()
-      ..color = _Colors.accent.withOpacity(0.22)
+      ..color = _Colors.secondary.withOpacity(0.24)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 3
       ..strokeCap = StrokeCap.round;
@@ -709,7 +717,7 @@ class _DarkMapPainter extends CustomPainter {
     final glowCenter = Offset(size.width * 0.7, size.height * 0.22);
     final glowPaint = Paint()
       ..shader = RadialGradient(
-        colors: [_Colors.accent.withOpacity(0.35), Colors.transparent],
+        colors: [_Colors.accent.withOpacity(0.22), Colors.transparent],
       ).createShader(Rect.fromCircle(center: glowCenter, radius: 70));
     canvas.drawCircle(glowCenter, 70, glowPaint);
     canvas.drawCircle(glowCenter, 5, Paint()..color = _Colors.accent);
@@ -717,19 +725,19 @@ class _DarkMapPainter extends CustomPainter {
     final glowCenter2 = Offset(size.width * 0.18, size.height * 0.62);
     final glowPaint2 = Paint()
       ..shader = RadialGradient(
-        colors: [Colors.white.withOpacity(0.12), Colors.transparent],
+        colors: [_Colors.secondary.withOpacity(0.20), Colors.transparent],
       ).createShader(Rect.fromCircle(center: glowCenter2, radius: 55));
     canvas.drawCircle(glowCenter2, 55, glowPaint2);
     canvas.drawCircle(
       glowCenter2,
       4,
-      Paint()..color = Colors.white.withOpacity(0.55),
+      Paint()..color = _Colors.secondary.withOpacity(0.75),
     );
 
     final glowCenter3 = Offset(size.width * 0.82, size.height * 0.78);
     final glowPaint3 = Paint()
       ..shader = RadialGradient(
-        colors: [_Colors.accent.withOpacity(0.22), Colors.transparent],
+        colors: [_Colors.accent.withOpacity(0.18), Colors.transparent],
       ).createShader(Rect.fromCircle(center: glowCenter3, radius: 60));
     canvas.drawCircle(glowCenter3, 60, glowPaint3);
     canvas.drawCircle(
