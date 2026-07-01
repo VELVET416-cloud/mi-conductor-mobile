@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'utils/app_theme.dart';
 import 'servicio_activo_screen.dart';
+import '../auth/login_screen.dart';
 
 /// Modelo simple de una solicitud de servicio (datos de prueba / mock).
 /// Cuando exista backend, esto se reemplaza por el modelo real que venga de la API.
@@ -1367,14 +1368,9 @@ class _PerfilTabState extends State<_PerfilTab> {
           TextButton(
             onPressed: () {
               Navigator.of(dialogContext).pop();
-              // TODO: cuando exista pantalla de login/auth, reemplazar esto por:
-              // Navigator.of(context).pushAndRemoveUntil(...)
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  behavior: SnackBarBehavior.floating,
-                  backgroundColor: AppColors.secondary,
-                  content: Text('Sesión cerrada', style: TextStyle(color: Colors.white)),
-                ),
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (_) => const LoginScreen()),
+                (route) => false,
               );
             },
             child: const Text('Cerrar sesión', style: TextStyle(color: AppColors.danger, fontWeight: FontWeight.w700)),
